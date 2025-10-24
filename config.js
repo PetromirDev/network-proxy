@@ -1,11 +1,29 @@
 // config.js - Configuration for proxy testing modes
 
+const SUBMODES_WITHOUT_KEYS = [
+	{ name: 'Everything', target: 'everything' },
+	{ name: 'Cena', target: 'cena' },
+	{ name: 'Velcro', target: 'velcro' },
+	{ name: 'DeFi', target: 'defi' },
+	{ name: 'All RPC Providers', target: 'allRpcProviders' },
+	{ name: 'Invictus RPC Providers', target: 'invictusRpcProviders' },
+	{ name: 'Non-Invictus RPC Providers', target: 'nonInvictusRpcProviders' },
+	{ name: 'Swap Providers', target: 'swapProviders' },
+	{ name: 'Bundler Providers', target: 'bundlerProviders' },
+	{ name: 'Paymaster', target: 'paymaster' }
+]
+
+const SUBMODES = SUBMODES_WITHOUT_KEYS.map((submode, index) => ({
+	...submode,
+	key: index.toString()
+}))
+
 module.exports = {
 	// General settings
 	settings: {
 		slowDownTimeout: {
-			min: 1000,
-			max: 5000
+			min: 3000,
+			max: 8000
 		},
 		failureRate: 0.2
 	},
@@ -34,7 +52,8 @@ module.exports = {
 		swapProviders: ['li.quest', 'bungee.exchange'],
 		bundlerProviders: ['pimlico', 'biconomy', 'gelato', 'etherspot', 'candide'],
 		paymaster: ['/v2/sponsorship'],
-		invictusRpcProviders: ['invictus.ambire.com']
+		invictusRpcProviders: ['invictus.ambire.com'],
+		defi: ['api/v3/defi/']
 	},
 
 	// Mode definitions
@@ -42,32 +61,12 @@ module.exports = {
 		slow: {
 			name: 'Slow',
 			applyFailure: false,
-			submodes: [
-				{ key: '1', name: 'Everything', target: 'everything' },
-				{ key: '2', name: 'Cena', target: 'cena' },
-				{ key: '3', name: 'Velcro', target: 'velcro' },
-				{ key: '4', name: 'Swap Providers', target: 'swapProviders' },
-				{ key: '5', name: 'Bundler Providers', target: 'bundlerProviders' },
-				{ key: '6', name: 'Paymaster', target: 'paymaster' },
-				{ key: '7', name: 'All RPC Providers', target: 'allRpcProviders' },
-				{ key: '8', name: 'Invictus RPC Providers', target: 'invictusRpcProviders' },
-				{ key: '9', name: 'Non-Invictus RPC Providers', target: 'nonInvictusRpcProviders' }
-			]
+			submodes: SUBMODES
 		},
 		shittyInternet: {
 			name: 'Shitty Internet',
 			applyFailure: true,
-			submodes: [
-				{ key: '1', name: 'Everything', target: 'everything' },
-				{ key: '2', name: 'Cena', target: 'cena' },
-				{ key: '3', name: 'Velcro', target: 'velcro' },
-				{ key: '4', name: 'Swap Providers', target: 'swapProviders' },
-				{ key: '5', name: 'Bundler Providers', target: 'bundlerProviders' },
-				{ key: '6', name: 'Paymaster', target: 'paymaster' },
-				{ key: '7', name: 'All RPC Providers', target: 'allRpcProviders' },
-				{ key: '8', name: 'Invictus RPC Providers', target: 'invictusRpcProviders' },
-				{ key: '9', name: 'Non-Invictus RPC Providers', target: 'nonInvictusRpcProviders' }
-			]
+			submodes: SUBMODES
 		},
 		parentalControl: {
 			name: 'Parental Control',

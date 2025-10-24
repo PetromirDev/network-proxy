@@ -52,6 +52,10 @@ function matchesEndpoint(url, target, requestDetail) {
 		return true
 	}
 
+	if (target === 'allRpcProviders') {
+		return isEthereumRpcRequest(requestDetail)
+	}
+
 	// Special handling for non-Invictus RPC detection
 	if (target === 'nonInvictusRpcProviders') {
 		return isNonInvictusRpcRequest(requestDetail)

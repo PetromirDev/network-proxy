@@ -98,7 +98,7 @@ class ProxyCLI {
 
 	clearKeyBindings() {
 		// Store the keys we want to unbind
-		const keysToUnbind = ['s', 'i', 'p', 'd', 'x', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'backspace', 'left']
+		const keysToUnbind = ['d', 'x', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'backspace', 'left']
 
 		// Unbind each key individually
 		keysToUnbind.forEach((key) => {
@@ -138,9 +138,9 @@ class ProxyCLI {
 		this.screen.append(this.box)
 
 		// Setup key bindings for main menu
-		this.screen.key(['s'], () => this.showSubMenu('slow'))
-		this.screen.key(['i'], () => this.showSubMenu('shittyInternet'))
-		this.screen.key(['p'], () => this.showSubMenu('parentalControl'))
+		this.screen.key(['1'], () => this.showSubMenu('slow'))
+		this.screen.key(['2'], () => this.showSubMenu('shittyInternet'))
+		this.screen.key(['3'], () => this.showSubMenu('parentalControl'))
 		this.screen.key(['d'], () => this.disableMode())
 		this.screen.key(['x'], () => this.disableMode())
 
@@ -164,13 +164,13 @@ class ProxyCLI {
 
 {bold}{cyan-fg}Available Modes:{/cyan-fg}{/bold}
 
-  {bold}[s]{/bold} Slow Mode
+  {bold}[1]{/bold} Slow Mode
       ${config.getDescription('slow')}
 
-  {bold}[i]{/bold} Shitty Internet Mode
+  {bold}[2]{/bold} Shitty Internet Mode
       ${config.getDescription('shittyInternet')}
 
-  {bold}[p]{/bold} Parental Control Mode
+  {bold}[3]{/bold} Parental Control Mode
       ${config.getDescription('parentalControl')}
 
   {bold}[d]{/bold} Disable All Modes
