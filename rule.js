@@ -86,6 +86,8 @@ function delay(ms) {
 	return new Promise((resolve) => setTimeout(resolve, ms))
 }
 
+let isPickyActive = false
+
 module.exports = {
 	summary: 'Network testing proxy with configurable modes',
 
@@ -118,6 +120,18 @@ module.exports = {
 			// Check if this URL matches the current target
 			if (!matchesEndpoint(url, currentState.target, requestDetail)) {
 				return null // Pass through
+			}
+
+			if (currentState.mode === 'picky') {
+				if (isPickyActive) {
+					return null // Already applied delay/failure for this request
+				}
+
+				isPickyActive = true
+
+				setTimeout(() => {
+					isPickyActive = false
+				}, 1000) // Reset after 1 second
 			}
 
 			// Apply delay

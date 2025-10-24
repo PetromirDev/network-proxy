@@ -140,7 +140,8 @@ class ProxyCLI {
 		// Setup key bindings for main menu
 		this.screen.key(['1'], () => this.showSubMenu('slow'))
 		this.screen.key(['2'], () => this.showSubMenu('shittyInternet'))
-		this.screen.key(['3'], () => this.showSubMenu('parentalControl'))
+		this.screen.key(['3'], () => this.showSubMenu('picky'))
+		this.screen.key(['4'], () => this.showSubMenu('parentalControl'))
 		this.screen.key(['d'], () => this.disableMode())
 		this.screen.key(['x'], () => this.disableMode())
 
@@ -170,7 +171,10 @@ class ProxyCLI {
   {bold}[2]{/bold} Shitty Internet Mode
       ${config.getDescription('shittyInternet')}
 
-  {bold}[3]{/bold} Parental Control Mode
+  {bold}[3]{/bold} Picky Slow + Failures Mode
+      ${config.getDescription('picky')}
+
+  {bold}[4]{/bold} Parental Control Mode
       ${config.getDescription('parentalControl')}
 
   {bold}[d]{/bold} Disable All Modes

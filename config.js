@@ -40,6 +40,8 @@ module.exports = {
 				return `Requests are delayed + ${failurePercent}% fail randomly`
 			case 'parentalControl':
 				return 'All requests are blocked with a message'
+			case 'picky':
+				return `Endpoints are delayed and blocked every so often`
 			default:
 				return ''
 		}
@@ -64,7 +66,12 @@ module.exports = {
 			submodes: SUBMODES
 		},
 		shittyInternet: {
-			name: 'Shitty Internet',
+			name: 'Slow + Failures',
+			applyFailure: true,
+			submodes: SUBMODES
+		},
+		picky: {
+			name: 'Picky Slow + Failures',
 			applyFailure: true,
 			submodes: SUBMODES
 		},
